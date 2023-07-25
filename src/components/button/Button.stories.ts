@@ -13,6 +13,10 @@ const meta:Meta<typeof Button>={
   isActive: { control: 'boolean' },
   background:{control:'color'},
   activeBackground:{control:'color'},
+  border: { control: 'text' },
+  activeBorder: { control: 'text' },
+  hoverStyles:{control:"object"},
+  activeStyles:{control:"object"},
 },
   
 }
