@@ -15,7 +15,7 @@ type BtnProps = {
   activeBorder: string;
   hoverStyles?:CSSProperties;
   activeStyles?:CSSProperties;
-  onClick?: () => any;
+  onClick?: () => undefined | any;
 };
 
 const Button = (props: BtnProps | any) => {
@@ -63,7 +63,10 @@ const Button = (props: BtnProps | any) => {
   }, [props,isActive]);
 
   const handleOnClick = () => {
-    props?.onClick();
+    if (props.onClick && typeof props.onClick === 'function') {
+      props.onClick(); 
+    }
+    
   };
 
   return (
