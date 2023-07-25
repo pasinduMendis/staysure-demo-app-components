@@ -1,4 +1,6 @@
-import React, { CSSProperties, ReactElement, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { useButton } from "react-aria";
+import { useRef } from "react";
 
 type BtnProps = {
   btnStyles?: CSSProperties;
@@ -8,38 +10,76 @@ type BtnProps = {
   subLabelStyles?: CSSProperties;
   background?: string;
   activeBackground?: string;
-  isActive?:Boolean;
-  onClick?:() => any
+  isActive?: Boolean;
+  border: string;
+  activeBorder: string;
+  hoverStyles?:CSSProperties;
+  activeStyles?:CSSProperties;
+  onClick?: () => any;
 };
 
 const Button = (props: BtnProps | any) => {
-  const [isActive, setIsActive] = useState(props?.isActive?props.isActive:false);
+  let ref: React.MutableRefObject<any> = useRef();
+  let { buttonProps } = useButton(props, ref);
+  
+  const [isActive, setIsActive] = useState(
+    props?.isActive ? props.isActive : false
+  );
+  const [border, setBorder] = useState("none");
+  const [background, setBackground] = useState("none");
+  const [isHover, setIsHovered] = useState(false);
 
   useEffect(() => {
-    setIsActive(props.isActive)
-  }, [props.isActive])
-  
+    setIsActive(props.isActive);
+    if (props.isActive == true || isActive==true) {
+      setBackground(
+        props.activeBackground
+          ? props.activeBackground
+          : props.background
+          ? props.background
+          : "none"
+      );
+      if (props.activeBorder) {
+        setBorder(
+          `${props.activeBorder}`
+        );
+      } else if (props.border) {
+        setBorder(
+          `${props.border}`
+        );
+      } else {
+        setBorder("none");
+      }
+    } else {
+      setBackground(props.background ? props.background : "none");
+      if (props.border) {
+        setBorder(
+          `${props.border}`
+        );
+      } else {
+        setBorder("none");
+      }
+    }
+  }, [props,isActive]);
 
-  const onClick = () => {
-    setIsActive(true);
-    props.onClick()
+  const handleOnClick = () => {
+    props?.onClick();
   };
-
-
 
   return (
     <button
+      {...buttonProps}
       style={{
         ...props.btnStyles,
-        background: isActive
-          ? props.activeBackground
-            ? props.activeBackground
-            : "lightBlue"
-          : props.background
-          ? props.background
-          : "white",
+        background: background,
+        border: border,
+        ...(isActive?props.activeStyles:{}),
+        ...(isHover?props.hoverStyles:{}),
       }}
-      onClick={() => onClick()}
+      onClick={() => handleOnClick()}
+      onMouseOver={() => {setIsHovered(true)}}
+      onMouseOut={() => setIsHovered(false)}
+
     >
       <p style={props.labelStyles}>{props.label}</p>
       {props?.subLabel && <p style={props.subLabelStyles}>{props.subLabel}</p>}
