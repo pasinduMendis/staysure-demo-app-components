@@ -26,17 +26,52 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: "test",
+    labelStyles: { margin: "0", marginBottom: "10px", color: "#fff" },
+    btnStyles: {
+      color: "#fff",
+      borderRadius: "8px",
+      fontSize: "20px",
+      fontWeight: 500,
+      padding: "18px",
+      maxWidth:"500px",
+      width: "100%",
+      outLine: "none",
+      lineHeight: "20px",
+    },
+    border:"1px solid #ea580c",
+    background:"#ea580c",
+    hoverStyles:{backgound:"#EF7D0A", border:"1px solid #EF7D0A"}
   },
 };
 
 export const ButtonWithSubLabel: Story = {
   args: {
     label: "test",
+    labelStyles: { margin: "0", marginBottom: "10px" },
     subLabel: "sub label",
+    subLabelStyles: {
+      margin: "0",
+      fontWeight: 400,
+      fontSize: "15px",
+      marginBottom: "0px",
+      color: "#fff",
+    },
+    btnStyles: {
+      color: "#fff",
+      borderRadius: "8px",
+      fontSize: "20px",
+      fontWeight: 500,
+      padding: "18px",
+      maxWidth:"500px",
+      width: "100%",
+      outLine: "none",
+      lineHeight: "20px",
+    },
+    background:"#ea580c",
   },
 };
 
-export const QuestionButton: Story = {
+export const ButtonWithBoarder: Story = {
   args: {
     label: "Single Trip",
     labelStyles: { margin: "0", marginBottom: "10px" },
@@ -55,7 +90,6 @@ export const QuestionButton: Story = {
       padding: "18px",
       maxWidth:"500px",
       width: "100%",
-      border: "2px solid #dbdddd",
       outLine: "none",
       borderRadius: "8px",
       lineHeight: "20px",
@@ -66,7 +100,7 @@ export const QuestionButton: Story = {
     },
     //background:"#1173d5",
     activeBackground:"red",
-    activeBorder:"red",
+    activeBorder:"2px solid blue",
   },
 };
 
