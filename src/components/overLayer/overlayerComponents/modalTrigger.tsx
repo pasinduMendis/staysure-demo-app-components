@@ -5,7 +5,7 @@ import Modal from './modal';
 import React, { CSSProperties} from 'react';
 
 type IconProps={ 
-    iconStyles?:CSSProperties,
+    //iconStyles?:CSSProperties,
     bottomLayerStyles?:CSSProperties,
     icon:string,
     }

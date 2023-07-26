@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react'
 import ModalTrigger from './overlayerComponents/modalTrigger'
 
 type IconProps={ 
-    iconStyles?:CSSProperties,
+    //iconStyles?:CSSProperties,
     isOpen?:boolean,
     bottomLayerStyles?:CSSProperties,
     }

@@ -5,7 +5,6 @@ const meta: Meta<typeof OverLayer> = {
   title: "Components/OverLayer",
   component: OverLayer,
   argTypes: {
-    iconStyles: { control: "object" },
     bottomLayerStyles: { control: "object" },
     isOpen: { control: "boolean" },
   },
