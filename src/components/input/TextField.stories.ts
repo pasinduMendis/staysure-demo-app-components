@@ -13,6 +13,8 @@ const meta: Meta<typeof TextField> = {
     labelStyles: { control: "object" },
     descriptionStyles: { control: "object" },
     errorMessageStyles: { control: "object" },
+    inputStyles: { control: "object" },
+    focusInputStyles: { control: "object" },
   },
 };
 export default meta
