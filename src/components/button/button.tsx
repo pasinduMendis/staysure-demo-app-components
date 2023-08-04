@@ -1,6 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from "react";
 import { useButton } from "react-aria";
 import { useRef } from "react";
+import styles from './Button.modules.css'
 
 type BtnProps = {
   btnStyles?: CSSProperties;
@@ -71,6 +72,7 @@ const Button = (props: BtnProps | any) => {
 
   return (
     <button
+    className={styles['buttonWidth']}
       {...buttonProps}
       style={{
         ...props.btnStyles,

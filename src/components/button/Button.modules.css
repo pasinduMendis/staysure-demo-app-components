@@ -1,0 +1,11 @@
+.buttonWidth{
+
+    width: 500px !important;
+
+}
+
+@media (max-width: 576px) {
+    .buttonWidth{
+        width: 100% !important;
+    }
+}
