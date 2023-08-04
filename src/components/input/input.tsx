@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from "react";
 import type { AriaTextFieldProps } from "react-aria";
 import { useTextField } from "react-aria";
-import styles from './Input.modules.css';
+import styled from "styled-components";
 
 type InputProps = {
   textFieldStyles?: CSSProperties;
@@ -28,9 +28,18 @@ const TextField = (props: AriaTextFieldProps | InputProps | any) => {
     setIsFocused(false);
   };
 
+  const TextInput = styled.input`
+  &::placeholder{
+    color:red;
+  }
+  @media (max-width: 576px) {
+    width: 100% !important;
+    max-width:unset !important;
+}
+  `
+
   return (
     <div
-      className={styles['textInput']}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -43,7 +52,7 @@ const TextField = (props: AriaTextFieldProps | InputProps | any) => {
       <label {...labelProps} style={props?.labelStyles}>
         {label}
       </label>
-      <input {...inputProps} ref={ref} style={{...props?.inputStyles, ...(isFocused?props?.focusInputStyles:{}),}} />
+      <TextInput {...inputProps} ref={ref} style={{...props?.inputStyles, ...(isFocused?props?.focusInputStyles:{}),}} />
       {props.description && (
         <div
           {...descriptionProps}

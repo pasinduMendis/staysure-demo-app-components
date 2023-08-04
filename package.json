@@ -37,12 +37,13 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
+    "react-aria": "^3.26.0",
     "react-dom": "^18.2.0",
-    "react-stately": "^3.24.0",
-    "react-aria": "^3.26.0"
+    "react-stately": "^3.24.0"
   },
   "dependencies": {
     "react-aria": "^3.26.0",
-    "rollup-plugin-typescript2": "^0.35.0"
+    "rollup-plugin-typescript2": "^0.35.0",
+    "styled-components": "^6.0.7"
   }
 }

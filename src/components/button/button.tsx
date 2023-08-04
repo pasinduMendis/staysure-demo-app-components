@@ -1,7 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from "react";
 import { useButton } from "react-aria";
 import { useRef } from "react";
-import styles from './Button.modules.css'
+import styled from "styled-components";
 
 type BtnProps = {
   btnStyles?: CSSProperties;
@@ -18,6 +18,17 @@ type BtnProps = {
   activeStyles?:CSSProperties;
   onClick?: () => undefined | any;
 };
+
+const ButtonComponent = styled.button`
+&:hover {
+  background: green !important;
+}
+  @media (max-width: 576px) {
+    width: 100% !important;
+    max-width: unset !important;
+
+}
+`
 
 const Button = (props: BtnProps | any) => {
   let ref: React.MutableRefObject<any> = useRef();
@@ -71,8 +82,8 @@ const Button = (props: BtnProps | any) => {
   };
 
   return (
-    <button
-    className={styles['buttonWidth']}
+    <ButtonComponent
+    
       {...buttonProps}
       style={{
         ...props.btnStyles,
@@ -88,7 +99,7 @@ const Button = (props: BtnProps | any) => {
     >
       <p style={props.labelStyles}>{props.label}</p>
       {props?.subLabel && <p style={props.subLabelStyles}>{props.subLabel}</p>}
-    </button>
+    </ButtonComponent>
   );
 };
 
