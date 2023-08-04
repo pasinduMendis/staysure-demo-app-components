@@ -1,6 +1,7 @@
 import React, { CSSProperties, useState } from "react";
 import type { AriaTextFieldProps } from "react-aria";
 import { useTextField } from "react-aria";
+import styles from './Input.modules.css';
 
 type InputProps = {
   textFieldStyles?: CSSProperties;
@@ -29,6 +30,7 @@ const TextField = (props: AriaTextFieldProps | InputProps | any) => {
 
   return (
     <div
+      className={styles['textInput']}
       style={{
         display: "flex",
         flexDirection: "column",

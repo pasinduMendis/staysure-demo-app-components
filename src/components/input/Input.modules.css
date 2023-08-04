@@ -1,0 +1,14 @@
+.textInput{
+    width: 500px !important;
+}
+
+.textInput input::placeholder{
+    color:blue
+}
+
+@media (max-width: 576px) {
+    .textInput {
+        width: 100% !important;
+    }
+}
+
