@@ -1,12 +1,17 @@
-import React from "react";
+import { isSameDay } from "@internationalized/date";
+import React, { CSSProperties, useState } from "react";
 import { AriaCalendarCellProps, useCalendarCell } from "react-aria";
 
 type Props=AriaCalendarCellProps & {
   state:any,
   key:string,
-  cellBackgroundNonSelected?:string,
+  cellBackground?:string,
   cellBackgroundSelected?:string,
-  cellStyles?:object
+  cellStyles?:CSSProperties,
+  rangeStartCellStyles?:CSSProperties,
+  rangeEndCellStyles?:CSSProperties,
+  disableStyles?:CSSProperties,
+  hoverStyles?:CSSProperties
 }
 
 export default function CalendarCell({ state, date, ...props }:Props ) {
@@ -21,16 +26,31 @@ export default function CalendarCell({ state, date, ...props }:Props ) {
     formattedDate,
   } = useCalendarCell({ date }, state, ref);
 
+  let isSelectionStart = state.highlightedRange
+  ? isSameDay(date, state.highlightedRange.start)
+  : isSelected;
+let isSelectionEnd = state.highlightedRange
+  ? isSameDay(date, state.highlightedRange.end)
+  : isSelected;
+
+  const [isHover, setIsHovered] = useState(false);
+
   return (
-    <td {...cellProps}>
+    <td {...cellProps} onMouseOver={() => {setIsHovered(true)}}
+    onMouseOut={() => setIsHovered(false)}>
       <div
         style={{
+          ...props.cellStyles,
           background: `${
             isSelected
               ? props.cellBackgroundSelected
-              : props.cellBackgroundNonSelected
+              : props.cellBackground?props.cellBackground:"white"
           }`,
-          ...props.cellStyles,
+          ...(isDisabled?props.disableStyles?props.disableStyles:{color:"gray"}:{}),
+          ...(isHover?props.hoverStyles:{}),
+          ...(
+            isSelectionStart?props.rangeStartCellStyles:
+            isSelectionEnd?props.rangeEndCellStyles:{})
         }}
         {...buttonProps}
         ref={ref}

@@ -12,6 +12,9 @@ const meta:Meta<typeof RangeCalendar>={
   weekStyles:{control:"object"},
   cellStyles:{control:"object"},
   btnStyles:{control:"object"},
+  rangeStartCellStyles:{control:"object"},
+  rangeEndCellStyles:{control:"object"},
+  hoverStyles:{control:"object"},
 },
   
 }

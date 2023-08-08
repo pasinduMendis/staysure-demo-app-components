@@ -9,6 +9,10 @@ type GridStyle={
   weekColor?: string,
   cellBackground?: string,
   cellBackgroundSelected?: string,
+  rangeStartCellStyles?:CSSProperties,
+  rangeEndCellStyles?:CSSProperties,
+  hoverStyles?:CSSProperties,
+  disableStyles?:CSSProperties,
 }
 
 type Props=AriaCalendarGridProps & {
@@ -51,11 +55,15 @@ export default function CalendarGrid({ state, ...props }:Props) {
                     key={i}
                     state={state}
                     date={date}
-                    cellBackgroundNonSelected={props?.gridStyles?.cellBackground}
+                    cellBackground={props?.gridStyles?.cellBackground}
                     cellBackgroundSelected={
                       props?.gridStyles?.cellBackgroundSelected
                     }
                     cellStyles={{ ...props?.gridStyles?.cellStyles }}
+                    rangeEndCellStyles={{...props?.gridStyles?.rangeEndCellStyles}}
+                    rangeStartCellStyles={props?.gridStyles?.rangeStartCellStyles}
+                    hoverStyles={props?.gridStyles?.hoverStyles}
+                    disableStyles={props?.gridStyles?.disableStyles}
                   />
                 ) : (
                   <td key={i} />
